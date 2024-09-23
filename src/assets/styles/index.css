@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: "Kanit", sans-serif;
+}
+
+.cl-main-1 {
+  color: #B9292F;
+}
+
+.cl-main-2 {
+  color: #D03E45;
+}
+
+.cl-main-3 {
+  color: #EA5E65;
+}
+
+.cl-main-4 {
+  color: #A00D13;
+}
+
+.cl-second-1 {
+  color: #2D343C;
+}
+
+.cl-second-2 {
+  color: #3B444B;
+}
+
+.cl-second-3 {
+  color: #4E5961;
+}
+
+.cl-second-4 {
+  color: #242A32;
+}
+
+.bg-main-1 {
+  background-color: #B9292F;
+}
+
+.bg-main-2 {
+  background-color: #D03E45;
+}
+
+.bg-main-3 {
+  background-color: #EA5E65;
+}
+
+.bg-main-4 {
+  background-color: #A00D13;
+}
+
+.bg-second-1 {
+  background-color: #2D343C;
+}
+
+.bg-second-2 {
+  background-color: #3B444B;
+}
+
+.bg-second-3 {
+  background-color: #4E5961;
+}
+
+.bg-second-4 {
+  background-color: #242A32;
+}
+
+.cl-withe {
+  color: #fff;
+}
