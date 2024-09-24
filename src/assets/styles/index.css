@@ -68,6 +68,15 @@ body {
   background-color: #242A32;
 }
 
-.cl-withe {
+.cl-white {
+  color: #fff;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.nav-link:hover,
+.nav-link:focus {
   color: #fff;
 }
