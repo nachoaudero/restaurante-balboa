@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-export const Navbar = ({ isAuthenticated, username }) => {
+export const Navbar = ({ isAuthenticated, username, onLogout }) => {
   return (
-    <nav className="navbar navbar-expand-md bg-main-1">
-      <div className="container-sm flex-row-reverse">
+    <header className="navbar navbar-expand-md bg-main-1 sticky-top">
+      <section className="container-sm flex-row-reverse">
         <Link className="navbar-brand m-0" to="/">
           <img src="/src/assets/images/balboa.png" alt="Logo" width="90" />
         </Link>
@@ -18,7 +18,7 @@ export const Navbar = ({ isAuthenticated, username }) => {
         >
           <i className="bi bi-list fs-2 cl-white" />
         </button>
-        <div className="collapse navbar-collapse" id="navbar">
+        <nav className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav align-items-center">
             <li className="nav-item">
               <Link className="nav-link cl-white" to="/productos">
@@ -35,12 +35,20 @@ export const Navbar = ({ isAuthenticated, username }) => {
 
             {isAuthenticated
               ? (
-                <li className="nav-item">
-                  <Link className="nav-link cl-white" to="/usuario">
-                    {username}
-                    <i className="bi bi-person ms-2" />
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link cl-white" to="/usuario">
+                      {username}
+                      <i className="bi bi-person ms-2" />
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link cl-white" to="/" onClick={onLogout}>
+                      Cerrar Sesion
+                      <i className="bi bi-box-arrow-left ms-2"></i>
+                    </Link>
+                  </li>
+                </>
               )
               : (
                 <>
@@ -59,8 +67,8 @@ export const Navbar = ({ isAuthenticated, username }) => {
                 </>
               )}
           </ul>
-        </div>
-      </div>
-    </nav>
+        </nav>
+      </section>
+    </header>
   )
 }

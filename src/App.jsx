@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Navbar } from './layouts/Navbar'
+import { Footer } from './layouts/Footer'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Order } from './pages/Order'
@@ -19,19 +20,24 @@ export const App = () => {
     setUsername(name)
   }
 
+  const logout = () => {
+    setIsAuthenticated(false)
+    setUsername('')
+  }
+
+
   return (
     <Router>
-      <Navbar isAuthenticated={isAuthenticated} username={username} />
-      <div className='container-sm mt-4'>
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/productos' element={<Products />}></Route>
-          <Route path='/pedido' element={<Order />}></Route>
-          <Route path='/login' element={<Login onLogin={login} />}></Route>
-          <Route path='/register' element={<Register />}></Route>
-          <Route path='/usuario' element={<User />}></Route>
-        </Routes>
-      </div>
+      <Navbar isAuthenticated={isAuthenticated} username={username} onLogout={logout} />
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/productos' element={<Products />}></Route>
+        <Route path='/pedido' element={<Order />}></Route>
+        <Route path='/login' element={<Login onLogin={login} />}></Route>
+        <Route path='/register' element={<Register />}></Route>
+        <Route path='/usuario' element={<User />}></Route>
+      </Routes>
+      <Footer />
     </Router>
   )
 }
