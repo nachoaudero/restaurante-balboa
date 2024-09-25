@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export const Navbar = ({ isAuthenticated, username }) => {
+export const Navbar = ({ isAuthenticated, username, onLogout }) => {
   return (
     <nav className="navbar navbar-expand-md bg-main-1">
       <div className="container-sm flex-row-reverse">
@@ -35,12 +35,20 @@ export const Navbar = ({ isAuthenticated, username }) => {
 
             {isAuthenticated
               ? (
-                <li className="nav-item">
-                  <Link className="nav-link cl-white" to="/usuario">
-                    {username}
-                    <i className="bi bi-person ms-2" />
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link cl-white" to="/usuario">
+                      {username}
+                      <i className="bi bi-person ms-2" />
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link cl-white" to="/" onClick={onLogout}>
+                      Cerrar Sesion
+                      <i className="bi bi-box-arrow-left ms-2"></i>
+                    </Link>
+                  </li>
+                </>
               )
               : (
                 <>
