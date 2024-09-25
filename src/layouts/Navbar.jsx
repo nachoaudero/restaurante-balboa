@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export const Navbar = ({ isAuthenticated, username, onLogout }) => {
   return (
-    <header className="navbar navbar-expand-md bg-main-1 sticky-top">
+    <header className="navbar navbar-expand-md bg-main-1 sticky-top shadow">
       <section className="container-sm flex-row-reverse">
         <Link className="navbar-brand m-0" to="/">
           <img src="/src/assets/images/balboa.png" alt="Logo" width="90" />

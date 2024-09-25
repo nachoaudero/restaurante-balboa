@@ -84,3 +84,9 @@ body {
 .nav-link:focus {
   color: #fff;
 }
+
+.btn-hover:hover {
+  background-color: #4E5961;
+  color: #fff;
+  transition: none;
+}
