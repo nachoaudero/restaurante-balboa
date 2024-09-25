@@ -26,6 +26,7 @@ export const App = () => {
   }
 
 
+
   return (
     <Router>
       <Navbar isAuthenticated={isAuthenticated} username={username} onLogout={logout} />
