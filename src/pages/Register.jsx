@@ -17,7 +17,7 @@ export const Register = () => {
         age,
         dni
       });
-      alert(`Creado el user: ${response.data.email}`)
+      alert(`Creado el usuario: ${response.data.email}`)
     } catch (error) {
       alert('Error al iniciar sesión: ' + error.response.data.message);
     }

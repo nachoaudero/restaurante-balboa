@@ -9,6 +9,11 @@ import { Register } from './pages/Register'
 import { User } from './pages/User'
 import { useState } from 'react'
 
+//estilos y pages modulo admin
+import AdminProducts from "./pages/AdminProducts.jsx";
+import AdminSales from "./pages/AdminSales.jsx";
+import AdminUsers from "./pages/AdminUsers.jsx";
+
 
 export const App = () => {
 
@@ -37,6 +42,9 @@ export const App = () => {
         <Route path='/login' element={<Login onLogin={login} />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/usuario' element={<User />}></Route>
+        <Route path='/admin/products' element={<AdminProducts />}></Route>
+        <Route path='/admin/sales' element={<AdminSales />}></Route>
+        <Route path='/admin/users' element={<AdminUsers />}></Route>
       </Routes>
       <Footer />
     </Router>
