@@ -1,5 +1,6 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const [email, setEmail] = useState('');
@@ -7,6 +8,7 @@ export const Register = () => {
   const [full_name, setFull_name] = useState('')
   const [age, setAge] = useState('')
   const [dni, setDni] = useState('')
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -17,6 +19,7 @@ export const Register = () => {
         age,
         dni
       });
+      navigate('/login')
       alert(`Creado el usuario: ${response.data.email}`)
     } catch (error) {
       alert('Error al iniciar sesión: ' + error.response.data.message);
@@ -24,40 +27,40 @@ export const Register = () => {
   }
 
 
-    return (
-        <div className="container">
-          <h2>Registrarse</h2>
-          <input
-              type="text"
-              placeholder="Nombre completo"
-              value={full_name}
-              onChange={(e) => setFull_name(e.target.value)}
-          />
-          <input
-              type="number"
-              placeholder="Edad"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-          />
-          <input
-              type="number"
-              placeholder="DNI"
-              value={dni}
-              onChange={(e) => setDni(e.target.value)}
-          />
-          <input
-              type="email"
-              placeholder="Ingresa tu email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-              type="password"
-              placeholder="Ingresa tu contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleRegister}>Registrarse</button>
-        </div>
-    );
+  return (
+    <div className="container">
+      <h2>Registrarse</h2>
+      <input
+        type="text"
+        placeholder="Nombre completo"
+        value={full_name}
+        onChange={(e) => setFull_name(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Edad"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="DNI"
+        value={dni}
+        onChange={(e) => setDni(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Ingresa tu email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Ingresa tu contraseña"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleRegister}>Registrarse</button>
+    </div>
+  );
 }
