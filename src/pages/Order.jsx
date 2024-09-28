@@ -1,6 +1,6 @@
 
 export const Order = () => {
   return (
-    <div>Order</div>
+    <div className="flex-grow-1">Order</div>
   )
 }

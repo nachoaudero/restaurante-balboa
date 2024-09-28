@@ -19,15 +19,15 @@ export const Navbar = ({ isAuthenticated, username, onLogout }) => {
           <i className="bi bi-list fs-2 cl-white" />
         </button>
         <nav className="collapse navbar-collapse" id="navbar">
-          <ul className="navbar-nav align-items-center">
+          <ul className="navbar-nav align-items-center gap-4">
             <li className="nav-item">
-              <Link className="nav-link cl-white" to="/productos">
+              <Link className="nav-link cl-white link-hover p-0 pb-1" to="/productos">
                 Productos
                 <i className="bi bi-shop ms-2" />
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link cl-white" to="/pedido">
+              <Link className="nav-link cl-white link-hover p-0 pb-1" to="/pedido">
                 Mi Pedido
                 <i className="bi bi-cart ms-2" />
               </Link>
@@ -37,13 +37,13 @@ export const Navbar = ({ isAuthenticated, username, onLogout }) => {
               ? (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white" to="/usuario">
+                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/usuario">
                       {username}
                       <i className="bi bi-person ms-2" />
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white" to="/" onClick={onLogout}>
+                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/" onClick={onLogout}>
                       Cerrar Sesion
                       <i className="bi bi-box-arrow-left ms-2"></i>
                     </Link>
@@ -53,13 +53,13 @@ export const Navbar = ({ isAuthenticated, username, onLogout }) => {
               : (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white" to="/login">
+                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/login">
                       Iniciar sesión
                       <i className="bi bi-person ms-2" />
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white" to="/register">
+                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/register">
                       Registrarse
                       <i className="bi bi-person-plus ms-2" />
                     </Link>

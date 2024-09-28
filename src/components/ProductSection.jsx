@@ -1,5 +1,3 @@
-
-// import React from 'react';
 import '../assets/styles/Products.css';
 import papasFritasImg from '../assets/images/img.png';
 
@@ -30,7 +28,7 @@ const productData = [
                 title: 'Pasta Alfredo',
                 subtitle: 'Cremosa y deliciosa',
                 description: 'Lorem ipsum es simplemente el texto de relleno de las imprentas.',
-                imageUrl:  papasFritasImg,
+                imageUrl: papasFritasImg,
                 price: '$12.00',
             },
         ],

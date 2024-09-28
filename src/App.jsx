@@ -34,19 +34,21 @@ export const App = () => {
 
   return (
     <Router>
-      <Navbar isAuthenticated={isAuthenticated} username={username} onLogout={logout} />
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/productos' element={<Products />}></Route>
-        <Route path='/pedido' element={<Order />}></Route>
-        <Route path='/login' element={<Login onLogin={login} />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='/usuario' element={<User />}></Route>
-        <Route path='/admin/products' element={<AdminProducts />}></Route>
-        <Route path='/admin/sales' element={<AdminSales />}></Route>
-        <Route path='/admin/users' element={<AdminUsers />}></Route>
-      </Routes>
-      <Footer />
+      <div className='d-flex flex-column min-vh-100'>
+        <Navbar isAuthenticated={isAuthenticated} username={username} onLogout={logout} />
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/productos' element={<Products />}></Route>
+          <Route path='/pedido' element={<Order />}></Route>
+          <Route path='/login' element={<Login onLogin={login} />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/usuario' element={<User />}></Route>
+          <Route path='/admin/products' element={<AdminProducts />}></Route>
+          <Route path='/admin/sales' element={<AdminSales />}></Route>
+          <Route path='/admin/users' element={<AdminUsers />}></Route>
+        </Routes>
+        <Footer />
+      </div>
     </Router>
   )
 }

@@ -50,43 +50,44 @@ export const Register = () => {
 
 
     return (
-    <div className="container">
-        <h2>Registrarse</h2>
-        <input
-        type="text"
-        placeholder="Nombre completo"
-        value={full_name}
-        onChange={(e) => setFull_name(e.target.value)}
-        />
-        <input
-        type="number"
-        placeholder="Edad"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-        />
-        <input
-        type="number"
-        placeholder="DNI"
-        value={dni}
-        onChange={(e) => setDni(e.target.value)}
-        />
-        <input
-        type="email"
-        placeholder="Ingresa tu email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-        type="password"
-        placeholder="Ingresa tu contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleRegister}>Registrarse</button>
-        <VerificationModal
-            show={showModal}
-            handleClose={() => setShowModal(false)}
-            onSubmit={handleVerification}
-        />
-    </div>
-)}
+        <div className="container flex-grow-1">
+            <h2>Registrarse</h2>
+            <input
+                type="text"
+                placeholder="Nombre completo"
+                value={full_name}
+                onChange={(e) => setFull_name(e.target.value)}
+            />
+            <input
+                type="number"
+                placeholder="Edad"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+            />
+            <input
+                type="number"
+                placeholder="DNI"
+                value={dni}
+                onChange={(e) => setDni(e.target.value)}
+            />
+            <input
+                type="email"
+                placeholder="Ingresa tu email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="Ingresa tu contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={handleRegister}>Registrarse</button>
+            <VerificationModal
+                show={showModal}
+                handleClose={() => setShowModal(false)}
+                onSubmit={handleVerification}
+            />
+        </div>
+    )
+}
