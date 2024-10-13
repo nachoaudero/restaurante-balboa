@@ -23,7 +23,7 @@ export const Login = ({ onLogin }) => {
     };
 
     return (
-        <div className="container">
+        <div className="container flex-grow-1">
             <h2>Iniciar Sesión</h2>
             <input
                 type="email"

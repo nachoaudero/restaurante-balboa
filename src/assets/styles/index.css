@@ -86,7 +86,26 @@ body {
 }
 
 .btn-hover:hover {
-  background-color: #4E5961;
+  background-color: #B9292F;
   color: #fff;
-  transition: none;
+  transition: .1s ease;
+}
+
+.link-hover {
+  position: relative;
+}
+
+.link-hover::after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+.link-hover:hover::after {
+  width: 100%;
 }

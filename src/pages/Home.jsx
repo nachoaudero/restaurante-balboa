@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 
 export const Home = () => {
   return (
-    <main className="bg-grey d-flex align-items-center min-vh-100">
+    <main className="bg-grey d-flex align-items-center flex-grow-1">
       <section className="container-sm">
-        <div className="row">
-          <div className="col-lg-6 d-flex justify-content-center">
+        <div className="row my-5">
+          <div className="col-lg-6 d-flex justify-content- mb-5 mb-lg-0">
             <article>
               <hgroup>
                 <h2 className="cl-second-1 fw-bolder text-center text-lg-start m-0 lh-lg">Bienvenido a</h2>
