@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 export const Navbar = ({ isAuthenticated, username, onLogout }) => {
   return (
-    <header className="navbar navbar-expand-md bg-main-1 sticky-top shadow">
+    <header className="navbar navbar-expand-md bg-main-1 sticky-top">
       <section className="container-sm flex-row-reverse">
-        <Link className="navbar-brand m-0" to="/">
+        <NavLink className="navbar-brand m-0" to="/">
           <img src="/src/assets/images/balboa.png" alt="Logo" width="90" />
-        </Link>
+        </NavLink>
         <button
           className="navbar-toggler border-0"
           type="button"
@@ -18,57 +18,57 @@ export const Navbar = ({ isAuthenticated, username, onLogout }) => {
         >
           <i className="bi bi-list fs-2 cl-white" />
         </button>
-        <nav className="collapse navbar-collapse" id="navbar">
+        <nav className="collapse navbar-collapse mb-3 mb-md-0" id="navbar">
           <ul className="navbar-nav align-items-center gap-4">
             <li className="nav-item">
-              <Link className="nav-link cl-white link-hover p-0 pb-1" to="/productos">
+              <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/productos">
                 Productos
                 <i className="bi bi-shop ms-2" />
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link cl-white link-hover p-0 pb-1" to="/pedido">
+              <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/pedido">
                 Mi Pedido
                 <i className="bi bi-cart ms-2" />
-              </Link>
+              </NavLink>
             </li>
 
             {isAuthenticated
               ? (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/usuario">
+                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/usuario">
                       {username}
                       <i className="bi bi-person ms-2" />
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/" onClick={onLogout}>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/" onClick={onLogout}>
                       Cerrar Sesion
                       <i className="bi bi-box-arrow-left ms-2"></i>
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )
               : (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/login">
+                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/login">
                       Iniciar sesión
                       <i className="bi bi-person ms-2" />
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link cl-white link-hover p-0 pb-1" to="/register">
+                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/register">
                       Registrarse
                       <i className="bi bi-person-plus ms-2" />
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )}
           </ul>
         </nav>
       </section>
-    </header>
+    </header >
   )
 }

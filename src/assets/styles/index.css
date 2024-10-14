@@ -91,14 +91,15 @@ body {
   transition: .1s ease;
 }
 
-.link-hover {
+.link-hover,
+.link-active {
   position: relative;
 }
 
 .link-hover::after {
   content: "";
   position: absolute;
-  background-color: #fff;
+  background-color: #2D343C;
   height: 3px;
   width: 0;
   left: 0;
@@ -108,4 +109,14 @@ body {
 
 .link-hover:hover::after {
   width: 100%;
+}
+
+.link-active::after {
+  content: "";
+  position: absolute;
+  background-color: #2D343C;
+  height: 3px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
 }
