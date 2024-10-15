@@ -1,23 +1,47 @@
 import {useEffect, useState} from "react";
-import {fetchProducts} from "../utilities/productUtilities.jsx";
+import {fetchProducts, saveProduct} from "../utilities/productUtilities.jsx";
+import AddProductModal from "../components/ModalAddProduct.jsx";
+import axios from "axios";
 
 const AdminProducts = () => {
     const [products, setProducts] = useState([])
     const [selectedImage, setSelectedImage] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showAddProductModal, setShowAddProductModal] = useState(false);
+    const [productToEdit, setProductToEdit] = useState(null);
 
-    // Función para abrir el modal con la imagen seleccionada
+
+    const handleAddProduct = (newProduct) => {
+        saveProduct(newProduct, false).catch(e => {
+            console.log(`Ocurrio un error: ${e}`)
+        })
+    };
+
+    const handleEditProduct = (updatedProduct) => {
+        saveProduct(updatedProduct, true).catch(e => {
+            console.log(`Ocurrio un error: ${e}`)
+        })
+    };
+
+    const handleSaveProduct = (product) => {
+        if (productToEdit) {
+            handleEditProduct(product);
+            window.location.reload()
+        } else {
+            handleAddProduct(product);
+            window.location.reload()
+        }
+    };
+
     const handleViewImage = (imageUrl) => {
         setSelectedImage(imageUrl);
         setShowModal(true);
     };
 
-    // Función para cerrar el modal
     const handleCloseModal = () => {
         setShowModal(false);
         setSelectedImage(null);
     };
-
 
     useEffect(() => {
         const loadProducts = async () => {
@@ -29,26 +53,21 @@ const AdminProducts = () => {
         })
     },[])
 
-    const handleEditProduct = (id) => {
-        console.log(`Editar producto con ID ${id}`);
+    const handleDeleteProduct = async (id) => {
+        const response = await axios.patch(`http://localhost:3001/product/delete/${id}`)
+        console.log(response)
+        window.location.reload()
     };
-
-    const handleDeleteProduct = (id) => {
-        console.log(`Eliminar producto con ID ${id}`);
-    };
-
-    const handleAddProduct = () => {
-
-    }
 
     return (
         <div className="products-view">
             <h2>Productos</h2>
-
-            {/* Botón de Agregar Producto */}
             <button
                 className="btn btn-primary mb-3"
-                onClick={handleAddProduct}
+                onClick={() => {
+                    setProductToEdit(null);
+                    setShowAddProductModal(true)
+                }}
             >
                 Agregar Producto
             </button>
@@ -78,7 +97,10 @@ const AdminProducts = () => {
                         <td>
                             <button
                                 className="btn btn-warning me-2"
-                                onClick={() => handleEditProduct(product.id)}
+                                onClick={() => {
+                                    setProductToEdit(product)
+                                   setShowAddProductModal(true)
+                                }}
                             >
                                 Editar
                             </button>
@@ -93,6 +115,13 @@ const AdminProducts = () => {
                 ))}
                 </tbody>
             </table>
+
+            <AddProductModal
+                show={showAddProductModal}
+                handleClose={() => setShowAddProductModal(false)}
+                handleSaveProduct={handleSaveProduct}
+                productToEdit={productToEdit}
+            />
 
             {selectedImage && (
                 <div
@@ -121,8 +150,6 @@ const AdminProducts = () => {
                     </div>
                 </div>
             )}
-
-
         </div>
     );
 };
