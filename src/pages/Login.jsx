@@ -15,8 +15,12 @@ export const Login = ({ onLogin }) => {
             });
             const { token, user } = response.data;
             localStorage.setItem('authToken', token);
-            onLogin(user.full_name);
-            navigate('/');
+            onLogin(user.full_name, user.is_admin);
+            if (user.is_admin) {
+                navigate('/admin/products')
+            } else {
+                navigate('/productos');
+            }
         } catch (error) {
             alert('Error al iniciar sesión: ' + error.response.data.message);
         }
