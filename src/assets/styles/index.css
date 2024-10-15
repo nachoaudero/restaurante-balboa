@@ -120,3 +120,17 @@ body {
   left: 0;
   bottom: 0;
 }
+
+@media (max-width: 767px) {
+  .link-active::after {
+    width: 0;
+  }
+
+  .link-hover:hover::after {
+    width: 0;
+  }
+}
+
+li {
+  list-style: none;
+}

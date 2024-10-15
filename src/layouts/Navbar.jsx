@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 
-export const Navbar = ({ isAuthenticated, username, onLogout }) => {
+export const Navbar = ({ isAuthenticated, username, onLogout, isAdmin }) => {
   return (
     <header className="navbar navbar-expand-md bg-main-1 sticky-top">
       <section className="container-sm flex-row-reverse">
@@ -18,55 +18,98 @@ export const Navbar = ({ isAuthenticated, username, onLogout }) => {
         >
           <i className="bi bi-list fs-2 cl-white" />
         </button>
-        <nav className="collapse navbar-collapse mb-3 mb-md-0" id="navbar">
-          <ul className="navbar-nav align-items-center gap-4">
-            <li className="nav-item">
-              <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/productos">
-                Productos
-                <i className="bi bi-shop ms-2" />
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/pedido">
-                Mi Pedido
-                <i className="bi bi-cart ms-2" />
-              </NavLink>
-            </li>
-
-            {isAuthenticated
-              ? (
-                <>
-                  <li className="nav-item">
-                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/usuario">
-                      {username}
-                      <i className="bi bi-person ms-2" />
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/" onClick={onLogout}>
-                      Cerrar Sesion
-                      <i className="bi bi-box-arrow-left ms-2"></i>
-                    </NavLink>
-                  </li>
-                </>
-              )
-              : (
-                <>
-                  <li className="nav-item">
-                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/login">
-                      Iniciar sesión
-                      <i className="bi bi-person ms-2" />
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 activo" : "nav-link cl-white link-hover p-0 pb-1"} to="/register">
-                      Registrarse
-                      <i className="bi bi-person-plus ms-2" />
-                    </NavLink>
-                  </li>
-                </>
-              )}
-          </ul>
+        <nav className="collapse navbar-collapse my-2 mb-md-0" id="navbar">
+          {!isAuthenticated ? (
+            <>
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/productos">
+                  Productos
+                  <i className="bi bi-shop ms-2" />
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/pedido">
+                  Mi Pedido
+                  <i className="bi bi-cart ms-2" />
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login">
+                  Iniciar sesión
+                  <i className="bi bi-person ms-2" />
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/register">
+                  Registrarse
+                  <i className="bi bi-person-plus ms-2" />
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            !isAdmin ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/productos">
+                    Productos
+                    <i className="bi bi-shop ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/pedido">
+                    Mi Pedido
+                    <i className="bi bi-cart ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/usuario">
+                    {username}
+                    <i className="bi bi-person ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login" onClick={onLogout}>
+                    Cerrar Sesion
+                    <i className="bi bi-box-arrow-left ms-2"></i>
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/admin/products">
+                    Editar Productos
+                    <i className="bi bi-pen ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/admin/sales">
+                    Ventas
+                    <i className="bi bi-cash ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/admin/users">
+                    Editar Usuarios
+                    <i className="bi bi-pen ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/usuario">
+                    Admin: {username}
+                    <i className="bi bi-person ms-2" />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login" onClick={onLogout}>
+                    Cerrar Sesion
+                    <i className="bi bi-box-arrow-left ms-2"></i>
+                  </NavLink>
+                </li>
+              </>
+            )
+          )
+          }
         </nav>
       </section>
     </header >
