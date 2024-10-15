@@ -34,7 +34,6 @@ function AddEditProductModal({ show, handleClose, handleSaveProduct, productToEd
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
-
         setProduct({
             ...product,
             image_file: file,
@@ -53,7 +52,8 @@ function AddEditProductModal({ show, handleClose, handleSaveProduct, productToEd
         const file = e.dataTransfer.files[0];
         setProduct({
             ...product,
-            image_url: URL.createObjectURL(file),
+            image_file: file,
+            image_url: URL.createObjectURL(file)
         });
     };
 
