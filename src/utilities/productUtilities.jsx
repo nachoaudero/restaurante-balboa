@@ -1,12 +1,11 @@
 import axios from "axios";
-import {map} from "react-bootstrap/ElementChildren";
 
 export const fetchProducts = async () => {
     try {
         const response = await axios.get('http://localhost:3001/product/find/all');
         return mapProducts(response.data)
     } catch (error) {
-        console.error('Error al obtener usuarios:', error);
+        console.error('Error al obtener productos:', error.message);
         return [];
     }
 };
@@ -19,22 +18,20 @@ function mapProducts(response) {
         image_url: product.image_url,
         description: product.description,
         cost: product.cost,
-        categoryId: product.category? product.category.id : null,
+        categoryId: product.category ? product.category.id : null,
     }))
 }
 
 export const fetchProductsByCategory = async () => {
     try {
         const response = await axios.get(`http://localhost:3001/product/fetchByCategory`);
-        console.log(response)
         const fetchedProducts = response.data.map(category => ({
             name: category.name,
             products: mapProducts(category.products)
         }));
-        console.log(fetchedProducts)
         return fetchedProducts
     } catch (error) {
-        console.error('Error al obtener usuarios:', error);
+        console.error('Error al obtener productos por categoria:', error.message);
         return [];
     }
 }
@@ -66,6 +63,6 @@ export const saveProduct = async (product, is_update) => {
             })
         }
     } catch (error) {
-        console.error('Error al guardar el producto:', error);
+        console.error('Error al guardar el producto:', error.message);
     }
 };

@@ -22,24 +22,42 @@ export const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
   const [username, setUsername] = useState('')
-  useEffect(() => localStorage.removeItem("authToken"), [])
 
-  const login = (name, is_admin) => {
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    const storedUsername = localStorage.getItem('username');
+    const storedIsAdmin = localStorage.getItem('isAdmin') === 'true';
+
+    if (token) {
+      setIsAuthenticated(true);
+      setUsername(storedUsername);
+      setIsAdmin(storedIsAdmin);
+    }
+  }, []);
+
+  const login = (name, is_admin, token) => {
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('username', name);
+    localStorage.setItem('isAdmin', is_admin);
+
     setIsAuthenticated(true)
     setIsAdmin(is_admin)
     setUsername(name)
   }
 
   const logout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('username');
+    localStorage.removeItem('isAdmin');
+
     setIsAuthenticated(false)
     setIsAdmin(false)
     setUsername('')
-    localStorage.removeItem("authToken")
   }
 
   return (
     <Router>
-      <div className='d-flex flex-column min-vh-100'>
+      <main className='d-flex flex-column min-vh-100'>
         <Navbar
           isAuthenticated={isAuthenticated}
           username={username}
@@ -49,16 +67,16 @@ export const App = () => {
         <Routes>
           {/*  Ruta publica */}
           <Route path='/' element={<Home />} />
+          <Route path="/productos" element={<Products />} />
 
           {/* Ruta publica solo para no autenticados */}
-          <Route element={<PublicRoute isAuthenticated={isAuthenticated} />}>
+          <Route element={<PublicRoute isAuthenticated={isAuthenticated} isAdmin={isAdmin} />}>
             <Route path="/login" element={<Login onLogin={login} />} />
             <Route path="/register" element={<Register />} />
           </Route>
 
           {/* Rutas protegidas para usuarios autenticados */}
           <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-            <Route path="/productos" element={<Products />} />
             <Route path="/pedido" element={<Order />} />
             <Route path="/usuario" element={<User />} />
           </Route>
@@ -74,7 +92,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
-      </div>
+      </main>
     </Router>
   )
 }

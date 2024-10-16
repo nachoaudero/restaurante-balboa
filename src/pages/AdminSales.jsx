@@ -1,4 +1,4 @@
-import {Card} from "./Card.jsx";
+import { Card } from "../components/Card.jsx";
 
 const AdminSales = () => {
     const monthlySales = 15000;
@@ -18,20 +18,20 @@ const AdminSales = () => {
                 <h2>Últimas 10 Ventas</h2>
                 <table>
                     <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Monto</th>
-                        <th>Producto</th>
-                    </tr>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Producto</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {salesData.map((sale) => (
-                        <tr key={sale.id}>
-                            <td>{sale.date}</td>
-                            <td>{sale.amount}</td>
-                            <td>{sale.product}</td>
-                        </tr>
-                    ))}
+                        {salesData.map((sale) => (
+                            <tr key={sale.id}>
+                                <td>{sale.date}</td>
+                                <td>{sale.amount}</td>
+                                <td>{sale.product}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
