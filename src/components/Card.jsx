@@ -1,4 +1,8 @@
 export const Card = ({ product, idx }) => {
+    if (!product) {
+        return null; // Si no hay producto, no renderiza nada
+    }
+    console.log(product)
     return (
         <div className="col-sm-6 col-md-4 col-xl-3 p-3">
             <div key={idx} className="bg-second-1 card border-0">
