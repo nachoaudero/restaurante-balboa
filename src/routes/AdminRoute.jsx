@@ -4,5 +4,10 @@ export const AdminRoute = ({ isAuthenticated, isAdmin }) => {
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
-  return isAdmin ? <Outlet /> : <Navigate to="/" />
+
+  if (isAuthenticated && !isAdmin) {
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />
 }

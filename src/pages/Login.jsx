@@ -14,8 +14,7 @@ export const Login = ({ onLogin }) => {
                 password
             });
             const { token, user } = response.data;
-            localStorage.setItem('authToken', token);
-            onLogin(user.full_name, user.is_admin);
+            onLogin(user.full_name, user.is_admin, token);
             if (user.is_admin) {
                 navigate('/admin/products')
             } else {

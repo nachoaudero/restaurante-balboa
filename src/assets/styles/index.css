@@ -72,6 +72,10 @@ body {
   color: #fff;
 }
 
+.cl-black {
+  color: #000;
+}
+
 .bg-grey {
   background-color: #AAAAAA;
 }
@@ -133,4 +137,30 @@ body {
 
 li {
   list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Espacia el contenido de la card */
+  height: 100%;
+  /* Hace que las cards sean del mismo alto */
+}
+
+.card-img-top {
+  object-fit: cover;
+  /* Recorta la imagen si es necesario para que no distorsione */
+  height: 200px;
+  /* Fija un alto para las imágenes */
+  width: 100%;
+  /* Asegura que las imágenes ocupen el ancho de la card */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Mantiene el botón en la parte inferior */
+  flex-grow: 1;
 }
