@@ -1,54 +1,34 @@
 import '../assets/styles/Products.css';
-import papasFritasImg from '../assets/images/img.png';
+import {fetchProductsByCategory} from "../utilities/productUtilities.jsx";
+import {useEffect, useState} from "react";
 
-const productData = [
-    {
-        sectionName: 'ENTRADAS',
-        products: [
-            {
-                title: 'Papas Fritas',
-                subtitle: 'Crujientes y deliciosas',
-                description: 'Lorem ipsum es simplemente el texto de relleno de las imprentas.',
-                imageUrl: papasFritasImg,
-                price: '$5.00',
-            },
-            {
-                title: 'Alitas de Pollo',
-                subtitle: 'Jugosas y sabrosas',
-                description: 'Lorem ipsum es simplemente el texto de relleno de las imprentas.',
-                imageUrl: papasFritasImg,
-                price: '$8.00',
-            },
-        ],
-    },
-    {
-        sectionName: 'ESPECIALIDADES',
-        products: [
-            {
-                title: 'Pasta Alfredo',
-                subtitle: 'Cremosa y deliciosa',
-                description: 'Lorem ipsum es simplemente el texto de relleno de las imprentas.',
-                imageUrl: papasFritasImg,
-                price: '$12.00',
-            },
-        ],
-    },
-];
 
 // Definición del componente
 const ProductSection = () => {
+    const [productsByCategory, setProductsByCategory] = useState([])
+
+    useEffect(() => {
+        const loadProducts = async () => {
+            const fetchedProducts = await fetchProductsByCategory();
+            setProductsByCategory(fetchedProducts)
+        }
+        loadProducts().catch(error => {
+            console.log(`Error al cargar productos: ${error}`)
+        })
+    })
+
     return (
         <div id="product-sections">
-            {productData.map((section, index) => (
+            {productsByCategory.map((category, index) => (
                 <div key={index} className="section">
                     <div key={index} className="section-title-container">
-                        <h2>{section.sectionName}</h2>
+                        <h2>{category.name}</h2>
                     </div>
                     <div className="products-container">
-                        {section.products.map((product, idx) => (
+                        {category.products.map((product, idx) => (
                             <div key={idx} className="product-card">
-                                <img src={product.imageUrl} alt={product.title} />
-                                <h3 className="product-card-tittle">{product.title}</h3>
+                                <img src={product.image_url} alt={product.name} />
+                                <h3 className="product-card-tittle">{product.name}</h3>
                                 <p className="product-card-text">{product.description}</p>
                                 <button>Agregar al carrito</button>
                             </div>
@@ -59,6 +39,5 @@ const ProductSection = () => {
         </div>
     );
 };
-
 
 export default ProductSection;

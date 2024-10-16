@@ -12,13 +12,17 @@ const AdminProducts = () => {
 
 
     const handleAddProduct = (newProduct) => {
-        saveProduct(newProduct, false).catch(e => {
+        saveProduct(newProduct, false)
+            .then(() => window.location.reload())
+            .catch(e => {
             console.log(`Ocurrio un error: ${e}`)
         })
     };
 
     const handleEditProduct = (updatedProduct) => {
-        saveProduct(updatedProduct, true).catch(e => {
+        saveProduct(updatedProduct, true)
+            .then(() => window.location.reload())
+            .catch(e => {
             console.log(`Ocurrio un error: ${e}`)
         })
     };
@@ -26,10 +30,8 @@ const AdminProducts = () => {
     const handleSaveProduct = (product) => {
         if (productToEdit) {
             handleEditProduct(product);
-            window.location.reload()
         } else {
             handleAddProduct(product);
-            window.location.reload()
         }
     };
 
