@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from "react";
 
 const QuantityModal = ({ product, isOpen, onClose, onAddToCart }) => {
     const [quantity, setQuantity] = useState(1);
 
-    useEffect(() => {
-        // Resetea la cantidad a 1 cada vez que el modal se abra
-        if (isOpen) {
-            setQuantity(1);
-        }
-    }, [isOpen]);
-
-    const handleIncrement = () => {
-        setQuantity(prev => prev + 1);
-    };
-
-    const handleDecrement = () => {
-        setQuantity(prev => Math.max(prev - 1, 1)); // Evita que sea menor a 1
-    };
-
     const handleAccept = () => {
         const order = {
-            product: product, // Asegúrate de que esto tenga la referencia correcta al producto
-            quantity: quantity // Asegúrate de que 'quantity' tenga el valor correcto
+            product: product,
+            quantity: quantity
         };
-        onAddToCart(order); // Llama a la función que maneja la adición al carrito
+        onAddToCart(order);
         onClose(); // Cierra el modal
+        setQuantity(1); // Resetea la cantidad
     };
-
 
     if (!isOpen) return null;
 
@@ -34,11 +19,13 @@ const QuantityModal = ({ product, isOpen, onClose, onAddToCart }) => {
         <div className="modal">
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                <h2>{product.name}</h2>
-                <div>
-                    <button onClick={handleDecrement}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={handleIncrement}>+</button>
+                <h3>{product.name}</h3>
+                <div className="quantity-container">
+                    <span className="quantity">{quantity}</span>
+                    <div className="quantity-controls">
+                        <button className="circle-button add-button" onClick={() => setQuantity(quantity + 1)}>+</button>
+                        <button className="circle-button subtract-button" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
+                    </div>
                 </div>
                 <button onClick={handleAccept}>Aceptar</button>
             </div>

@@ -2,19 +2,16 @@ import { useEffect, useState } from "react";
 import { fetchProductsByCategory } from "../utilities/productUtilities.jsx";
 import { Card } from '../components/Card.jsx';
 
-export const Products = () => {
+export const Product = () => {
     const [productsByCategory, setProductsByCategory] = useState([]);
-    const [successMessage, setSuccessMessage] = useState(''); // Estado para el mensaje de éxito
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleAddToCart = (order) => {
-        // Aquí puedes manejar la lógica para agregar al carrito
         console.log('Producto agregado al carrito:', order);
-        setSuccessMessage(`Producto ${order.product.name} agregado al carrito!`); // Establece el mensaje de éxito
-
-        // Opcionalmente, puedes ocultar el mensaje después de un tiempo
+        setSuccessMessage(`Producto ${order.product.name} agregado al carrito!`);
         setTimeout(() => {
             setSuccessMessage('');
-        }, 3000); // Oculta el mensaje después de 3 segundos
+        }, 3000);
     };
 
     useEffect(() => {
@@ -45,7 +42,7 @@ export const Products = () => {
                                 <Card
                                     product={product}
                                     key={product.id}
-                                    onAddToCart={handleAddToCart}
+                                    onAddToCart={handleAddToCart} // Asegúrate de pasar la función aquí
                                 />
                             ))}
                         </div>
