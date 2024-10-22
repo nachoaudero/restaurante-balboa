@@ -1,11 +1,11 @@
-export const Card = ({ product, idx }) => {
+export const Card = ({ product }) => {
     if (!product) {
         return null; // Si no hay producto, no renderiza nada
     }
-    console.log(product)
+
     return (
         <div className="col-sm-6 col-md-4 col-xl-3 p-3">
-            <div key={idx} className="bg-second-1 card border-0">
+            <div key={product.id} className="bg-second-1 card border-0">
                 <img src={product.image_url} alt={product.name} className="card-img-top" />
                 <div className="card-body">
                     <h3 className="card-tittle cl-white mb-0">{product.name}</h3>

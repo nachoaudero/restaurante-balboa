@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
-export const Login = ({ onLogin }) => {
+export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { login } = useContext(UserContext)
 
     const handleLogin = async () => {
         try {
@@ -14,7 +16,7 @@ export const Login = ({ onLogin }) => {
                 password
             });
             const { token, user } = response.data;
-            onLogin(user.full_name, user.is_admin, token);
+            login(user.full_name, user.is_admin, token);
             if (user.is_admin) {
                 navigate('/admin/products')
             } else {
