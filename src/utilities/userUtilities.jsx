@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-// Función para obtener y formatear usuarios
+const dbhost = import.meta.env.VITE_BACK_HOST;
+
 export const fetchUsers = async () => {
     try {
-        const response = await axios.get('http://localhost:3001/user/find/all');
-        // Formatear la lista de usuarios
+        const response = await axios.get(`${dbhost}user/find/all`);
         return response.data.map(user => ({
-            id: user.id, // Mantener el ID original
-            full_name: user.full_name, // Aquí puedes cambiar a full_name si es necesario
+            id: user.id,
+            full_name: user.full_name,
             email: user.email,
-            is_admin: user.is_admin, // Cambia el nombre a is_admin si prefieres
+            is_admin: user.is_admin,
         }));
     } catch (error) {
         console.error('Error al obtener usuarios:', error);
@@ -19,7 +19,7 @@ export const fetchUsers = async () => {
 
 export const updateAdminState = async (id, adminState) => {
     try {
-        await axios.put(`http://localhost:3001/user/update/${id}`, { is_admin : !adminState })
+        await axios.put(`${dbhost}user/update/${id}`, { is_admin : !adminState })
     } catch (e) {
         console.log(`Error al cambiar el estado del usuario: ${e}`)
     }

@@ -11,6 +11,7 @@ export const Register = () => {
     const [showModal, setShowModal] = useState(false)
     const [verificationCode, setVerificationCode] = useState('');
     const navigate = useNavigate();
+    const dbhost = import.meta.env.VITE_BACK_HOST;
 
 
     const generateCode = () => {
@@ -29,7 +30,7 @@ export const Register = () => {
         if (enteredCode === verificationCode) {
             alert('¡Verificación exitosa!');
             try {
-                const response = await axios.post('http://localhost:3001/user/create', {
+                const response = await axios.post(`${dbhost}user/create`, {
                     email: user.mail,
                     password: user.contraseña,
                     full_name: user.nombre,

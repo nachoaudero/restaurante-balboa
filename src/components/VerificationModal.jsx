@@ -9,11 +9,9 @@ const VerificationModal = ({ show, handleClose, onSubmit }) => {
         const newCode = [...code];
         newCode[index] = value;
 
-        // Si se ingresa un número, pasar al siguiente input automáticamente
         if (value && index < 5) {
             inputRefs.current[index + 1].focus();
         } else if (!value) {
-            // Si se borra un número, volver al anterior (a menos que esté en el primer input)
             if (index > 0) {
                 inputRefs.current[index - 1].focus();
             }
@@ -23,7 +21,6 @@ const VerificationModal = ({ show, handleClose, onSubmit }) => {
     };
 
     useEffect(() => {
-        // Limpiar el código cuando se cierra el modal
         if (!show) {
             setCode(['', '', '', '', '', '']);
         }
@@ -45,7 +42,7 @@ const VerificationModal = ({ show, handleClose, onSubmit }) => {
                             onChange={(e) => handleChange(e.target.value, index)}
                             className="form-control mx-1"
                             style={{ width: '40px', textAlign: 'center' }}
-                            ref={(el) => (inputRefs.current[index] = el)} // Almacenar referencias de los inputs
+                            ref={(el) => (inputRefs.current[index] = el)}
                         />
                     ))}
                 </div>
