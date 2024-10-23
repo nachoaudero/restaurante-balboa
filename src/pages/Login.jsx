@@ -1,15 +1,14 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
+import { LoginCard } from '../components/LoginCard';
 
 export const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
     const { login } = useContext(UserContext)
+    const navigate = useNavigate()
 
-    const handleLogin = async () => {
+    const handleLogin = async (email, password) => {
         try {
             const response = await axios.post('http://localhost:3001/user/login', {
                 email,
@@ -28,21 +27,10 @@ export const Login = () => {
     };
 
     return (
-        <div className="container flex-grow-1">
-            <h2>Iniciar Sesión</h2>
-            <input
-                type="email"
-                placeholder="Ingresa tu email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleLogin}>Iniciar Sesión</button>
-        </div>
+        <section className="flex-grow-1 bg-grey container-fluid">
+            <aside className='container-sm my-5'>
+                <LoginCard handleLogin={handleLogin} />
+            </aside>
+        </section>
     );
 };
