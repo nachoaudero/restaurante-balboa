@@ -1,8 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { sendEmailVerificationCode } from "../utilities/sendEmailVerificationCode.jsx";
 import VerificationModal from "../components/VerificationModal.jsx";
-
 import { useNavigate } from "react-router-dom";
 import { RegisterCard } from "../components/RegisterCard.jsx";
 
@@ -13,18 +11,11 @@ export const Register = () => {
     const navigate = useNavigate();
     const dbhost = import.meta.env.VITE_BACK_HOST;
 
-
     const generateCode = () => {
-        return Math.floor(100000 + Math.random() * 900000);
-    };
-
-    const handleRegister = async (usuario) => {
-        const code = generateCode();
+        const code = Math.floor(100000 + Math.random() * 900000);
         setVerificationCode(code.toString())
-        setUser(usuario)
-        await sendEmailVerificationCode(user.mail, code, user.nombre)
-        setShowModal(true)
-    }
+        return code.toString()
+    };
 
     const handleVerification = async (enteredCode) => {
         if (enteredCode === verificationCode) {
@@ -51,7 +42,7 @@ export const Register = () => {
     return (
         <section className="flex-grow-1 bg-grey container-fluid">
             <aside className="container-sm my-5">
-                <RegisterCard handleRegister={handleRegister} />
+                <RegisterCard setShowModal={setShowModal} generateCode={generateCode} setUser={setUser} />
             </aside>
             <VerificationModal
                 show={showModal}

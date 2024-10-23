@@ -1,10 +1,19 @@
 import { useForm } from "react-hook-form"
+import { sendEmailVerificationCode } from "../utilities/sendEmailVerificationCode.jsx";
 
-export const RegisterCard = ({ handleRegister }) => {
+export const RegisterCard = ({ setShowModal, generateCode, setUser }) => {
   const { register, handleSubmit, formState: { errors }, watch } = useForm()
 
-  const onSubmit = handleSubmit((data) => {
-    handleRegister(data)
+  const handleRegister = async (usuario) => {
+    setUser(usuario)
+    const code = generateCode()
+    console.log(usuario)
+    await sendEmailVerificationCode(usuario.mail, code, usuario.nombre)
+    setShowModal(true)
+  }
+
+  const onSubmit = handleSubmit((usuario) => {
+    handleRegister(usuario)
   })
 
   return (
