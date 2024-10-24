@@ -1,11 +1,16 @@
 import { NavLink } from "react-router-dom"
+import { UserContext } from "../contexts/UserContext"
+import { useContext } from "react"
+import balboa from "../assets/images/balboa.png"
 
-export const Navbar = ({ isAuthenticated, username, onLogout, isAdmin }) => {
+export const Navbar = () => {
+  const { userData, logout } = useContext(UserContext)
+
   return (
     <header className="navbar navbar-expand-md bg-main-1 sticky-top">
       <section className="container-sm flex-row-reverse">
         <NavLink className="navbar-brand m-0" to="/">
-          <img src="/src/assets/images/balboa.png" alt="Logo" width="90" />
+          <img src={balboa} alt="Logo" width="90" />
         </NavLink>
         <button
           className="navbar-toggler border-0"
@@ -19,7 +24,7 @@ export const Navbar = ({ isAuthenticated, username, onLogout, isAdmin }) => {
           <i className="bi bi-list fs-2 cl-white" />
         </button>
         <nav className="collapse navbar-collapse my-2 mb-md-0" id="navbar">
-          {!isAuthenticated ? (
+          {!userData.isAuthenticated ? (
             <>
               <li className="nav-item">
                 <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/productos">
@@ -47,7 +52,7 @@ export const Navbar = ({ isAuthenticated, username, onLogout, isAdmin }) => {
               </li>
             </>
           ) : (
-            !isAdmin ? (
+            !userData.isAdmin ? (
               <>
                 <li className="nav-item">
                   <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/productos">
@@ -63,12 +68,12 @@ export const Navbar = ({ isAuthenticated, username, onLogout, isAdmin }) => {
                 </li>
                 <li className="nav-item">
                   <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/usuario">
-                    {username}
+                    {userData.username}
                     <i className="bi bi-person ms-2" />
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login" onClick={onLogout}>
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login" onClick={logout}>
                     Cerrar Sesion
                     <i className="bi bi-box-arrow-left ms-2"></i>
                   </NavLink>
@@ -96,12 +101,12 @@ export const Navbar = ({ isAuthenticated, username, onLogout, isAdmin }) => {
                 </li>
                 <li className="nav-item">
                   <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/usuario">
-                    Admin: {username}
+                    Admin: {userData.username}
                     <i className="bi bi-person ms-2" />
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login" onClick={onLogout}>
+                  <NavLink className={({ isActive }) => isActive ? "nav-link cl-white link-active p-0 pb-1 me-4" : "nav-link cl-white link-hover p-0 pb-1 me-4"} to="/login" onClick={logout}>
                     Cerrar Sesion
                     <i className="bi bi-box-arrow-left ms-2"></i>
                   </NavLink>

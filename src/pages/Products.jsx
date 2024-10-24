@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { fetchProductsByCategory } from "../utilities/productUtilities.jsx";
 import { Card } from '../components/Card.jsx';
+import { useProducts } from "../hooks/useProducts.js";
+import { Error } from './Error.jsx';
+import { Loading } from "./Loading.jsx";
 
 export const Products = () => {
-  const [productsByCategory, setProductsByCategory] = useState([])
+  const { productsByCategory, loading, error } = useProducts()
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      const fetchedProducts = await fetchProductsByCategory();
-      setProductsByCategory(fetchedProducts)
-    }
-    loadProducts().catch(error => {
-      console.log(`Error al cargar productos: ${error}`)
-    })
-  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
 
   return (
     <section className='flex-grow-1 bg-grey'>

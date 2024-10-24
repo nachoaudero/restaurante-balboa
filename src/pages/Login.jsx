@@ -1,20 +1,22 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
+import { LoginCard } from '../components/LoginCard';
 
-export const Login = ({ onLogin }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+export const Login = () => {
+    const { login } = useContext(UserContext)
+    const navigate = useNavigate()
+    const dbhost = import.meta.env.VITE_BACK_HOST;
 
-    const handleLogin = async () => {
+    const handleLogin = async (email, password) => {
         try {
-            const response = await axios.post('http://localhost:3001/user/login', {
+            const response = await axios.post(`${dbhost}user/login`, {
                 email,
                 password
             });
             const { token, user } = response.data;
-            onLogin(user.full_name, user.is_admin, token);
+            login(user.full_name, user.is_admin, token);
             if (user.is_admin) {
                 navigate('/admin/products')
             } else {
@@ -26,21 +28,10 @@ export const Login = ({ onLogin }) => {
     };
 
     return (
-        <div className="container flex-grow-1">
-            <h2>Iniciar Sesión</h2>
-            <input
-                type="email"
-                placeholder="Ingresa tu email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleLogin}>Iniciar Sesión</button>
-        </div>
+        <section className="flex-grow-1 bg-grey container-fluid">
+            <aside className='container-sm my-5'>
+                <LoginCard handleLogin={handleLogin} />
+            </aside>
+        </section>
     );
 };

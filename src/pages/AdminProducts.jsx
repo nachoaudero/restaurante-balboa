@@ -9,6 +9,7 @@ const AdminProducts = () => {
     const [showModal, setShowModal] = useState(false);
     const [showAddProductModal, setShowAddProductModal] = useState(false);
     const [productToEdit, setProductToEdit] = useState(null);
+    const dbhost = import.meta.env.VITE_BACK_HOST;
 
 
     const handleAddProduct = (newProduct) => {
@@ -56,7 +57,7 @@ const AdminProducts = () => {
     },[])
 
     const handleDeleteProduct = async (id) => {
-        const response = await axios.patch(`http://localhost:3001/product/delete/${id}`)
+        const response = await axios.patch(`${dbhost}product/delete/${id}`)
         console.log(response)
         window.location.reload()
     };
@@ -91,7 +92,7 @@ const AdminProducts = () => {
                         <td>
                             <button
                                 className="btn btn-info"
-                                onClick={() => handleViewImage(product.image_url)}
+                                onClick={() => handleViewImage(dbhost+product.image_url)}
                             >
                                 <i className="bi bi-eye"></i> {/* Icono de ojo */}
                             </button>

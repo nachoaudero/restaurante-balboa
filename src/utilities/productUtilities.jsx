@@ -1,8 +1,10 @@
 import axios from "axios";
 
+
+const dbhost = import.meta.env.VITE_BACK_HOST;
 export const fetchProducts = async () => {
     try {
-        const response = await axios.get('http://localhost:3001/product/find/all');
+        const response = await axios.get(`${dbhost}product/find/all`);
         return mapProducts(response.data)
     } catch (error) {
         console.error('Error al obtener productos:', error.message);
@@ -24,7 +26,7 @@ function mapProducts(response) {
 
 export const fetchProductsByCategory = async () => {
     try {
-        const response = await axios.get(`http://localhost:3001/product/fetchByCategory`);
+        const response = await axios.get(`${dbhost}product/fetchByCategory`);
         const fetchedProducts = response.data.map(category => ({
             id: category.id,
             name: category.name,
@@ -51,13 +53,13 @@ export const saveProduct = async (product, is_update) => {
 
     try {
         if (is_update) {
-            await axios.put(`http://localhost:3001/product/update/${product.id}`, formData, {
+            await axios.put(`${dbhost}product/update/${product.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
         } else {
-            await axios.post('http://localhost:3001/product/create', formData, {
+            await axios.post(`${dbhost}product/create`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
