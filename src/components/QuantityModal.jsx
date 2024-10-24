@@ -6,14 +6,14 @@ const QuantityModal = ({ product, isOpen, onClose, onAddToCart }) => {
     const handleAccept = () => {
         const order = {
             product: product,
-            quantity: quantity
+            quantity: quantity,
         };
-        onAddToCart(order);
+        onAddToCart(order); // Llama a la función para agregar el producto al carrito
         onClose(); // Cierra el modal
         setQuantity(1); // Resetea la cantidad
     };
 
-    if (!isOpen) return null;
+    if (!isOpen) return null; // Si el modal no está abierto, no renderiza nada
 
     return (
         <div className="modal">
@@ -27,7 +27,7 @@ const QuantityModal = ({ product, isOpen, onClose, onAddToCart }) => {
                         <button className="circle-button subtract-button" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
                     </div>
                 </div>
-                <button onClick={handleAccept}>Aceptar</button>
+                <button onClick={handleAccept}>Aceptar</button> {/* Asegúrate de que esto llama a handleAccept */}
             </div>
         </div>
     );
