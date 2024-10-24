@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import gnocci from '../assets/images/gnoqui.png'
 
 export const Home = () => {
   return (
@@ -19,7 +20,7 @@ export const Home = () => {
           </div>
           <div className="col-lg-6">
             <figure className="m-0">
-              <img src="/src/assets/images/gnoqui.png" alt="plato_gnoqui" className="img-fluid" />
+              <img src={gnocci} alt="plato_gnoqui" className="img-fluid" />
             </figure>
           </div>
         </div>

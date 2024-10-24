@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
 import { useContext } from "react"
+import balboa from "../assets/images/balboa.png"
 
 export const Navbar = () => {
   const { userData, logout } = useContext(UserContext)
@@ -9,7 +10,7 @@ export const Navbar = () => {
     <header className="navbar navbar-expand-md bg-main-1 sticky-top">
       <section className="container-sm flex-row-reverse">
         <NavLink className="navbar-brand m-0" to="/">
-          <img src="/src/assets/images/balboa.png" alt="Logo" width="90" />
+          <img src={balboa} alt="Logo" width="90" />
         </NavLink>
         <button
           className="navbar-toggler border-0"
