@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
-const QuantityModal = ({ product, isOpen, onClose, onAddToCart }) => {
+const QuantityModal = ({ show, onHide, onAddToCart, product }) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleAccept = () => {
-        const order = {
-            product: product,
-            quantity: quantity
-        };
-        onAddToCart(order);
-        onClose(); // Cierra el modal
-        setQuantity(1); // Resetea la cantidad
+        if (onAddToCart) {
+            onAddToCart(product, quantity); // Pasa el producto y la cantidad seleccionada al carrito
+        } else {
+            console.error("onAddToCart no es una función válida");
+        }
+        onHide();  // Cierra el modal
     };
 
-    if (!isOpen) return null;
+    const increment = () => setQuantity(quantity + 1);
+    const decrement = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <span className="close" onClick={onClose}>&times;</span>
-                <h3>{product.name}</h3>
-                <div className="quantity-container">
-                    <span className="quantity">{quantity}</span>
-                    <div className="quantity-controls">
-                        <button className="circle-button add-button" onClick={() => setQuantity(quantity + 1)}>+</button>
-                        <button className="circle-button subtract-button" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
-                    </div>
+        <Modal show={show} onHide={onHide}>
+            <Modal.Header closeButton>
+                <Modal.Title>Selecciona la cantidad</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Button onClick={decrement}>-</Button>
+                    <span style={{ margin: '0 10px' }}>{quantity}</span>
+                    <Button onClick={increment}>+</Button>
                 </div>
-                <button onClick={handleAccept}>Aceptar</button>
-            </div>
-        </div>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={onHide}>Cerrar</Button>
+                <Button variant="primary" onClick={handleAccept}>Aceptar</Button>
+            </Modal.Footer>
+        </Modal>
     );
 };
 
