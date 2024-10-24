@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import QuantityModal from './QuantityModal';
+import {Order} from "../pages/Order.jsx";
 
 export const Card = ({ product, onAddToCart }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
