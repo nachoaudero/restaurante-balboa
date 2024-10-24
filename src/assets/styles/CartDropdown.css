@@ -1,0 +1,35 @@
+
+.cart-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1000;
+    width: 300px; /* Puedes ajustar el ancho según necesites */
+    display: none; /* Inicialmente oculto */
+}
+
+.cart-dropdown.visible {
+    display: block; /* Mostrar cuando tenga la clase visible */
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item img {
+    width: 50px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    margin-right: 10px;
+}
+
+.cart-item-name {
+    flex: 1;
+}
+
+.cart-item-quantity {
+    margin-left: 10px;
+}
