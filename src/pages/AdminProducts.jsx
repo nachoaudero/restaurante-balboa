@@ -92,7 +92,7 @@ const AdminProducts = () => {
                         <td>
                             <button
                                 className="btn btn-info"
-                                onClick={() => handleViewImage(product.image_url)}
+                                onClick={() => handleViewImage(dbhost+product.image_url)}
                             >
                                 <i className="bi bi-eye"></i> {/* Icono de ojo */}
                             </button>

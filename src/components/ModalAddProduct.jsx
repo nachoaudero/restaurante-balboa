@@ -13,6 +13,7 @@ const initialProductState = {
 function AddEditProductModal({ show, handleClose, handleSaveProduct, productToEdit }) {
     const [product, setProduct] = useState(initialProductState);
     const [dragOver, setDragOver] = useState(false);
+    const dbhost = import.meta.env.VITE_BACK_HOST;
 
     // Cargar los datos del producto a editar, si existen
     useEffect(() => {
@@ -121,7 +122,7 @@ function AddEditProductModal({ show, handleClose, handleSaveProduct, productToEd
                                     onDrop={handleDrop}
                                 >
                                     {product.image_url ? (
-                                        <img src={product.image_url} alt="Producto" className="img-fluid" />
+                                        <img src={dbhost+product.image_url} alt="Producto" className="img-fluid" />
                                     ) : (
                                         <p>Arrastra una imagen o selecciona una desde tu equipo</p>
                                     )}
